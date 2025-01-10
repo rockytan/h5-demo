@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Check } from "lucide-vue-next";
 
@@ -21,12 +20,12 @@ const features = [
     </div>
     <Card class="mb-6">
       <CardHeader>
-        <CardTitle class="text-3xl font-bold text-green-800">
-          OPPO 续航计划 2022
+        <CardTitle class="text-4xl font-extrabold text-black">
+          OPPO 续航计划 <span class="text-green-800">2022</span>
         </CardTitle>
       </CardHeader>
       <CardContent class="text-lg text-green-700">
-        电池焕新一口价 限时 <span class="text-green-900 font-bold">39</span> 元起
+        电池换新一口价 限时 <span class="text-green-900 font-bold">39</span> 元起
         <br />
         OPPO 商城配件 秒杀低至 <span class="text-green-900 font-bold">6.9</span> 元
       </CardContent>
@@ -55,7 +54,7 @@ const features = [
     <div class="text-sm text-gray-600 mt-6">
       <p>备注：</p>
       <ol class="list-decimal list-inside">
-        <li>“电池焕新一口价”是指保外更换电池时，仅收取电池备件费用，免收 50 元人工费；</li>
+        <li>“电池换新一口价”是指保外更换电池时，仅收取电池备件费用，免收 50 元人工费；</li>
         <li>前往 OPPO 官方服务中心或选择寄修，同城取送均可享受折扣价格，“同城取送”所产生的服务费需另行收取；</li>
         <li>本活动折扣不支持与 OPPO 会员&一加成长会员的维修折扣同享；</li>
         <li>参与活动更换后的电池享受 180 天官方保修服务；</li>
