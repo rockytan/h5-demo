@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-vue-next";
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen bg-green-100">
     <div class="text-center p-4">
-      <h1 class="text-4xl font-extrabold mb-2">《都是老铁》</h1>
+      <h1 class="text-5xl font-extrabold italic mb-2">《都是老铁》</h1>
       <p class="text-2xl mb-4">测试你和哪个大咖更铁</p>
       <p class="text-lg text-green-600">快手光合嘉年华</p>
     </div>
@@ -19,7 +19,7 @@ import { ArrowRight } from "lucide-vue-next";
         class="rounded-md object-cover"
       />
     </AspectRatio>
-    <Button variant="solid" class="flex items-center space-x-2 bg-black text-white rounded-full px-6 py-3">
+    <Button variant="solid" class="flex items-center space-x-2 bg-black text-white rounded-full px-8 py-4 text-lg">
       <span>开始测试</span>
       <ArrowRight />
     </Button>
