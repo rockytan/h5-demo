@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -91,13 +91,16 @@ const submitOrder = async () => {
     console.error('Error:', error);
   }
 };
+
+const filteredCities = computed(() => cities.value[selectedProvince.value] || []);
+const filteredDistricts = computed(() => districts.value[selectedCity.value] || []);
 </script>
 
 <template>
   <div class="max-w-md mx-auto p-4 space-y-4">
     <div v-if="alertMessage" class="mb-4">
-      <Alert>
-        <AlertTitle>提示</AlertTitle>
+      <Alert class="bg-yellow-100 border-yellow-500 text-yellow-700">
+        <AlertTitle>警告</AlertTitle>
         <AlertDescription>{{ alertMessage }}</AlertDescription>
       </Alert>
     </div>
@@ -132,7 +135,7 @@ const submitOrder = async () => {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>城市</SelectLabel>
-              <SelectItem v-for="city in cities[selectedProvince]" :key="city.code" :value="city.code">
+              <SelectItem v-for="city in filteredCities" :key="city.code" :value="city.code">
                 {{ city.name }}
               </SelectItem>
             </SelectGroup>
@@ -145,7 +148,7 @@ const submitOrder = async () => {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>区县</SelectLabel>
-              <SelectItem v-for="district in districts[selectedCity]" :key="district.code" :value="district.code">
+              <SelectItem v-for="district in filteredDistricts" :key="district.code" :value="district.code">
                 {{ district.name }}
               </SelectItem>
             </SelectGroup>
