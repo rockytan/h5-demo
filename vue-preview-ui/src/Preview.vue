@@ -3,6 +3,7 @@
 import { ref } from 'vue';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Select,
   SelectContent,
@@ -51,21 +52,22 @@ const districts = ref({
 const selectedProvince = ref('');
 const selectedCity = ref('');
 const selectedDistrict = ref('');
+const alertMessage = ref('');
 
 const validateForm = () => {
   const phoneRegex = /^\d{11}$/;
   const consigneeRegex = /^[\u4e00-\u9fa5a-zA-Z]+$/;
 
   if (!form.value.consignee || !consigneeRegex.test(form.value.consignee)) {
-    alert('请输入正确的收货人姓名');
+    alertMessage.value = '请输入正确的收货人姓名';
     return false;
   }
   if (!form.value.phone || !phoneRegex.test(form.value.phone)) {
-    alert('请输入正确的手机号');
+    alertMessage.value = '请输入正确的手机号';
     return false;
   }
   if (!form.value.address) {
-    alert('请输入详细地址');
+    alertMessage.value = '请输入详细地址';
     return false;
   }
   return true;
@@ -93,16 +95,22 @@ const submitOrder = async () => {
 
 <template>
   <div class="max-w-md mx-auto p-4 space-y-4">
+    <div v-if="alertMessage" class="mb-4">
+      <Alert>
+        <AlertTitle>提示</AlertTitle>
+        <AlertDescription>{{ alertMessage }}</AlertDescription>
+      </Alert>
+    </div>
     <div>
-      <label for="consignee" class="block text-sm font-medium text-gray-700">收货人</label>
+      <label for="consignee" class="block text-sm font-bold text-gray-700">收货人</label>
       <Input id="consignee" v-model="form.consignee" placeholder="请输入" />
     </div>
     <div>
-      <label for="phone" class="block text-sm font-medium text-gray-700">手机号</label>
+      <label for="phone" class="block text-sm font-bold text-gray-700">手机号</label>
       <Input id="phone" v-model="form.phone" placeholder="请输入" />
     </div>
     <div>
-      <label class="block text-sm font-medium text-gray-700">地址</label>
+      <label class="block text-sm font-bold text-gray-700">地址</label>
       <div class="flex space-x-2">
         <Select v-model="selectedProvince">
           <SelectTrigger>
@@ -146,10 +154,10 @@ const submitOrder = async () => {
       </div>
     </div>
     <div>
-      <label for="address" class="block text-sm font-medium text-gray-700">详细地址</label>
+      <label for="address" class="block text-sm font-bold text-gray-700">详细地址</label>
       <Input id="address" v-model="form.address" placeholder="请输入" />
     </div>
-    <Button @click="submitOrder" variant="outline" class="w-full">提交</Button>
+    <Button @click="submitOrder" class="w-full bg-blue-500 text-white">提交</Button>
   </div>
 </template>
 
