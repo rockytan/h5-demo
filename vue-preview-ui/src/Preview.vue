@@ -52,7 +52,28 @@ const selectedProvince = ref('');
 const selectedCity = ref('');
 const selectedDistrict = ref('');
 
+const validateForm = () => {
+  const phoneRegex = /^\d{11}$/;
+  const consigneeRegex = /^[\u4e00-\u9fa5a-zA-Z]+$/;
+
+  if (!form.value.consignee || !consigneeRegex.test(form.value.consignee)) {
+    alert('请输入正确的收货人姓名');
+    return false;
+  }
+  if (!form.value.phone || !phoneRegex.test(form.value.phone)) {
+    alert('请输入正确的手机号');
+    return false;
+  }
+  if (!form.value.address) {
+    alert('请输入详细地址');
+    return false;
+  }
+  return true;
+};
+
 const submitOrder = async () => {
+  if (!validateForm()) return;
+
   form.value.areaCode = selectedDistrict.value;
   try {
     const response = await fetch('http://127.0.0.1:8080/api/order', {
